@@ -54,6 +54,9 @@ def get_user_repos(username, auth_user=None, auth_password=None):
     query = _GITHUB_REPOS_URL.format(username=username)
     all_repos = requests.get(query, auth=auth_info)
 
+    if all_repos.status_code != 200:
+        raise RuntimeError(all_repos.status_code)
+
     return all_repos.json()
 
 
@@ -61,7 +64,7 @@ def get_source_repo(owner, fork_id, auth_user=None, auth_password=None):
     auth_info = _convert_params_to_auth_struct(auth_user, auth_password)
 
     query = _GIHUB_REPOS_BY_OWNER_URL.format(owner=owner, repo=fork_id)
-    repo = requests.get(query, auth_info)
+    repo = requests.get(query, auth=auth_info)
 
     return repo.json()["parent"]
 
