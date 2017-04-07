@@ -76,15 +76,20 @@ def get_user_base_repos(username, auth_user=None, auth_password=None):
                 repo["owner"]['login'], repo["name"], auth_user, auth_password
             )
 
-            base_repos.append(base_repo)
         else:
-            base_repos.append(repo)
+            base_repo = repo
+
+        base_repos.append(RepositoryInfo(
+            name=base_repo["name"], id=base_repo["id"])
+        )
 
     return base_repos
 
 
 def get_users_repos(usernames, auth_user=None, auth_password=None):
-    return {
+    user_repos = {
         user: get_user_base_repos(user, auth_user, auth_password)
         for user in usernames
     }
+
+    return user_repos
