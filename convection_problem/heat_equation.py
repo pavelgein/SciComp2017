@@ -1,14 +1,10 @@
 r"""
-The transient advection-diffusion equation with a given divergence-free
-advection velocity.
-
 Find :math:`u` such that:
 
 .. math::
     \int_{\Omega} s \pdiff{u}{t}
-    + \int_{\Omega} s \nabla \cdot \left(\ul{v} u \right)
     + \int_{\Omega} D \nabla s \cdot \nabla u
-    = 0
+    =   \int_{\Gamma s\nabla u}
     \;, \quad \forall s \;.
 
 View the results using::
@@ -47,7 +43,6 @@ ebcs = {
 materials = {
     'm' : ({'D' : 1, }, ),
     'flux' : ({'left' : -5, 'right': 5}, ),
-    'source': ({'f': 3}, ),
 }
 
 
