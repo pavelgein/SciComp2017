@@ -40,9 +40,10 @@ def show_graph(graph):
 
     draw(
         graph,
+        #  pos=pos,
         node_color=colors,
         labels=_get_node_labels(graph),
-        node_size=200,
+        node_size=600,
         font_size=10,
-        with_labels=True,
     )
+
